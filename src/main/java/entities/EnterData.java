@@ -20,7 +20,7 @@ public class EnterData {
 
 			typeClient = new ClientRegular();
 
-		} else if (tipoCliente.equalsIgnoreCase("fidelidade")) {
+		} else if (tipoCliente.equalsIgnoreCase("Reward")) {
 
 			typeClient = new ClientFidelidade();
 		}

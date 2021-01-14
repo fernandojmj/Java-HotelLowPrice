@@ -1,6 +1,7 @@
 package br.com.dominio.singleton;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import br.com.dominio.repositories.DAO;
@@ -32,14 +33,17 @@ public class BoSales {
 	public Hotel getHotelLowPrice(EnterData param) throws Exception {
 
 		HashMap<Hotel, Double> somaHotel = new HashMap<>();
+		
+		//Buscando Lista de hoteis
+		InterfaceDAO dao = DAO.getIntanceDAO(new Hotel());
+		List<Model> listaHoteis = dao.getList(); 
 
 		for (String data : param.getDatasSolicitadas()) {
 
 			System.out.println("============================: " + data);
 			
 			
-			InterfaceDAO dao = DAO.getIntanceDAO(new Hotel());
-			for (Model model : dao.getList()) {
+			for (Model model : listaHoteis) {
 				
 				Hotel hotel = (Hotel)model; 
 				

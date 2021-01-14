@@ -32,9 +32,9 @@ public  class DaoHoteis extends DAO  {
 	public List<Model> getList() {
 		hoteis = new ArrayList<>();
 		
-		hoteis.add(new HotelBuilder().setName("Parque das flores").setClassificacao(3).setClientFidelidade(80,80).setClientRegular(110, 90).builder());
-		hoteis.add(new HotelBuilder().setName("Jardim Botânico").setClassificacao(4).setClientFidelidade(110, 50).setClientRegular(160, 60).builder());
-		hoteis.add(new HotelBuilder().setName("Mar Atlântico").setClassificacao(5).setClientFidelidade(100, 40).setClientRegular(220, 150).builder());
+		hoteis.add(new HotelBuilder().setName("Lakewood").setClassificacao(3).setClientFidelidade(80,80).setClientRegular(110, 90).builder());
+		hoteis.add(new HotelBuilder().setName("Bridgewood").setClassificacao(4).setClientFidelidade(110, 50).setClientRegular(160, 60).builder());
+		hoteis.add(new HotelBuilder().setName("Ridgewood").setClassificacao(5).setClientFidelidade(100, 40).setClientRegular(220, 150).builder());
  
 		return hoteis;
 	}
