@@ -1,5 +1,5 @@
 package br.com.dominio.builder;
-import entities.ClientFidelidade;
+import entities.ClientReward;
 import entities.ClientRegular;
 import entities.Hotel;
 
@@ -32,14 +32,14 @@ public class HotelBuilder {
 		return this;
 	}
 
-	public HotelBuilder setClientFidelidade(double valorDiaDeSemanaFidelidade, double valorFimDeSemanaFidelidade) {
+	public HotelBuilder setClientReward(double valorDiaDeSemanaFidelidade, double valorFimDeSemanaFidelidade) {
 
-		ClientFidelidade client = new ClientFidelidade();
+		ClientReward client = new ClientReward();
 
 		client.setValorDiaDeSemana(valorDiaDeSemanaFidelidade);
 		client.setValorFimDeSemana(valorFimDeSemanaFidelidade);
 
-		instance.setClietFidelidade(client);
+		instance.setClietReward(client);
 		return this;
 	}
 	

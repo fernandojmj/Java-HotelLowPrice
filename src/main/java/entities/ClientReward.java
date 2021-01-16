@@ -1,11 +1,11 @@
 package entities;
 
-public class ClientFidelidade extends Client {
+public class ClientReward extends Client {
 	
 	public double valorDiaDeSemana;
 	public double valorFimDeSemana;
 
-	public ClientFidelidade() {
+	public ClientReward() {
 		// TODO Auto-generated constructor stub
 	}
 

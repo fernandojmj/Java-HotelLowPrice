@@ -4,7 +4,7 @@ public class Hotel extends Model {
 
 	public String name;
 	public Integer classificacao;
-	public ClientFidelidade clietFidelidade;
+	public ClientReward clietReward;
 	public ClientRegular clientRegular;
 	
 	
@@ -14,11 +14,11 @@ public class Hotel extends Model {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ClientFidelidade getClietFidelidade() {
-		return clietFidelidade;
+	public ClientReward getClietReward() {
+		return clietReward;
 	}
-	public void setClietFidelidade(ClientFidelidade clietFidelidade) {
-		this.clietFidelidade = clietFidelidade;
+	public void setClietReward(ClientReward clietFidelidade) {
+		this.clietReward = clietFidelidade;
 	}
 	public ClientRegular getClientRegular() {
 		return clientRegular;

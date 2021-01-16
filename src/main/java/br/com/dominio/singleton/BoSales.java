@@ -3,11 +3,12 @@ package br.com.dominio.singleton;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import br.com.dominio.repositories.DAO;
-import br.com.dominio.repositories.DaoHoteis;
+import br.com.dominio.repositories.HotelDAO;
 import br.com.dominio.repositories.InterfaceDAO;
-import entities.ClientFidelidade;
+import entities.ClientReward;
 import entities.ClientRegular;
 import entities.EnterData;
 import entities.Hotel;
@@ -34,16 +35,14 @@ public class BoSales {
 
 		HashMap<Hotel, Double> somaHotel = new HashMap<>();
 		
-		//Buscando Lista de hoteis
-		InterfaceDAO dao = DAO.getIntanceDAO(new Hotel());
-		List<Model> listaHoteis = dao.getList(); 
+		 
 
 		for (String data : param.getDatasSolicitadas()) {
 
 			System.out.println("============================: " + data);
 			
 			
-			for (Model model : listaHoteis) {
+			for (Model model : DAO.getList(HotelDAO.class)) {
 				
 				Hotel hotel = (Hotel)model; 
 				
@@ -53,12 +52,12 @@ public class BoSales {
 					somaHotel.put(hotel, 0.0);
 				}
 
-				if (param.typeClient instanceof ClientRegular) {
+				if (param.getTypeClient() instanceof ClientRegular) {
 
 					getSomaRegular(somaHotel, hotel, isFimDeSemana);
 
 				}
-				if (param.typeClient instanceof ClientFidelidade) {
+				if (param.getTypeClient() instanceof ClientReward) {
 					getSomaFidelidade(somaHotel, hotel, isFimDeSemana);
 				}
 
@@ -71,7 +70,7 @@ public class BoSales {
 		//interando a soma dos hoteis para verificar o hotel com menor valor
 		Map.Entry<Hotel, Double> hotelLowPrice = null;
 		hotelLowPrice = getLowPriceHotel(somaHotel, hotelLowPrice);
-
+	
 		if (hotelLowPrice != null) {
 			return hotelLowPrice.getKey();
 		} else {
@@ -80,8 +79,9 @@ public class BoSales {
 
 	}
 
-	private Map.Entry<Hotel, Double> getLowPriceHotel(HashMap<Hotel, Double> somaHotel,
-			Map.Entry<Hotel, Double> hotelLowPrice) {
+	private Entry<Hotel, Double> getLowPriceHotel(HashMap<Hotel, Double> somaHotel,
+			Entry<Hotel, Double> hotelLowPrice) {
+		
 		for (Map.Entry<Hotel, Double> hotel : somaHotel.entrySet()) {
 			if (hotelLowPrice == null) {
 				hotelLowPrice = hotel;
@@ -103,14 +103,15 @@ public class BoSales {
 		return hotelLowPrice;
 	}
 
+	
 	private void getSomaFidelidade(HashMap<Hotel, Double> somaHotel, Hotel hotel, boolean isFinalDeSemana) {
 		if (isFinalDeSemana) {
-			double soma = somaHotel.get(hotel).doubleValue() + hotel.getClietFidelidade().getValorFimDeSemana();
-			somaHotel.remove(hotel, soma);
+			double soma = somaHotel.get(hotel).doubleValue() + hotel.getClietReward().getValorFimDeSemana();
+			somaHotel.remove(hotel);
 			somaHotel.put(hotel, soma);
 		} else {
 
-			double soma = somaHotel.get(hotel).doubleValue() + hotel.getClietFidelidade().getValorDiaDeSemana();
+			double soma = somaHotel.get(hotel).doubleValue() + hotel.getClietReward().getValorDiaDeSemana();
 			somaHotel.remove(hotel, soma);
 			somaHotel.put(hotel, soma);
 		}

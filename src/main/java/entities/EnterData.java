@@ -5,8 +5,8 @@ import java.util.List;
 
 public class EnterData {
 
-	public Client typeClient;
-	List<String> datasSolicitadas;
+	private Client typeClient;
+	private List<String> datasSolicitadas;
 
 	public EnterData(String param) {
 
@@ -22,7 +22,7 @@ public class EnterData {
 
 		} else if (tipoCliente.equalsIgnoreCase("Reward")) {
 
-			typeClient = new ClientFidelidade();
+			typeClient = new ClientReward();
 		}
 
 		for (String string : datas) {
